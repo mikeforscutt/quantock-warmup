@@ -1,0 +1,14 @@
+# Ignore WordPress uploads & cache
+/uploads/
+/cache/
+/upgrade/
+
+# Ignore plugins (keep repo focused on theme)
+plugins/
+languages/
+
+# OS / tooling
+.DS_Store
+*.log
+node_modules/
+vendor/
