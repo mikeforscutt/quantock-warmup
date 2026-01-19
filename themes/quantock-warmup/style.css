@@ -6,7 +6,7 @@ Version: 1.0
 */
 
 /* -------------------------
-   Reset / Base
+   Base / Reset
 ------------------------- */
 
 *,
@@ -17,6 +17,7 @@ Version: 1.0
 
 html {
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -35,17 +36,39 @@ video {
   display: block;
 }
 
-/* -------------------------
-   Layout
-------------------------- */
-
-.site-main {
-  padding: 60px 0;
+/* Links */
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration-thickness: 2px;
 }
 
+/* -------------------------
+   Variables
+------------------------- */
+
+:root {
+  --container: 1100px;
+  --gutter: 20px;
+
+  --hero-bg: #f3f0e6;
+  --ink: #1c1f2a;
+  --accent: #f05a28;
+}
+
+/* -------------------------
+   Layout helpers
+------------------------- */
+
 .container {
-  width: min(1100px, calc(100% - 40px));
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
   margin-inline: auto;
+}
+
+.site-main {
+  padding: 32px 0;
 }
 
 /* -------------------------
@@ -58,103 +81,91 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.25;
-  margin: 0 0 16px;
+  line-height: 1.1;
+  margin: 0;
 }
 
 p {
   margin: 0 0 16px;
 }
 
-.page-title {
-  margin: 0 0 24px;
+/* Hide homepage title */
+.home .entry-title,
+.home .page-title,
+.home .wp-block-post-title {
+  display: none !important;
 }
 
 /* -------------------------
-   Content / Gutenberg
+   HERO
 ------------------------- */
 
-.entry-content {
-  max-width: 100%;
-}
-
-/* Consistent vertical rhythm inside content */
-.entry-content > * + * {
-  margin-top: 24px;
-}
-
-/* Images */
-.entry-content img {
-  border-radius: 8px;
-}
-
-/* Captions */
-.wp-element-caption {
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.4;
-  opacity: 0.8;
-}
-
-/* Make WP image blocks behave (stops weird side-by-side/caption layouts) */
-.wp-block-image {
-  margin: 0;
-}
-
-.wp-block-image figure,
-.wp-block-image .wp-block-image__wrapper {
-  margin: 0;
-}
-
-.wp-block-image figcaption {
-  margin: 10px 0 0;
-}
-
-/* Kill surprise floats */
-.entry-content .alignleft,
-.entry-content .alignright,
-.entry-content .wp-block-image.alignleft,
-.entry-content .wp-block-image.alignright {
-  float: none;
-  margin: 0;
-}
-
-/* Centered blocks behave */
-.entry-content .aligncenter {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Wide/full blocks (future-proofing) */
-.entry-content .alignwide {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.entry-content .alignfull {
+.wp-block-group.hero {
+  background: var(--hero-bg);
+  min-height: 85vh;
+  display: grid;
+  align-content: center;
+  padding: 64px 0 96px;
   width: 100%;
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
 }
 
-/* Optional: tame group spacing (WP can be a bit wild) */
-.wp-block-group {
-  margin: 0;
+/* Inner container */
+.wp-block-group.hero > .wp-block-group__inner-container {
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+/* Main hero heading */
+.wp-block-group.hero .hero-title {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--ink);
+  font-size: clamp(42px, 10vw, 64px);
+}
+
+/* Each line is controlled */
+.wp-block-group.hero .hero-line {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+/* Word wrapper */
+.wp-block-group.hero .hero-word {
+  display: inline-block;
+}
+
+/* Accent colour */
+.quantock-title {
+  color: var(--accent);
 }
 
 /* -------------------------
-   Links
+   Responsive
 ------------------------- */
 
-a {
-  color: inherit;
-  text-decoration: underline;
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+  }
+
+  .wp-block-group.hero {
+    min-height: 90vh;
+    padding: 120px 0;
+  }
+
+  .wp-block-group.hero .hero-title {
+    font-size: clamp(72px, 8vw, 96px);
+  }
 }
 
-a:hover {
-  text-decoration-thickness: 2px;
+@media (min-width: 1024px) {
+  .wp-block-group.hero .hero-title {
+    font-size: 104px;
+  }
 }
 
 /* -------------------------
