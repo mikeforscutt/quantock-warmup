@@ -46,18 +46,21 @@ a:hover {
 }
 
 /* -------------------------
-   Layout helpers
+   Variables
 ------------------------- */
 
 :root {
   --container: 1100px;
   --gutter: 20px;
 
-  /* Figma-ish hero palette (tweak later) */
-  --hero-bg: #f3f0e6; /* warm off-white */
-  --ink: #1c1f2a;     /* deep navy/charcoal */
-  --accent: #f05a28;  /* orange */
+  --hero-bg: #f3f0e6;
+  --ink: #1c1f2a;
+  --accent: #f05a28;
 }
+
+/* -------------------------
+   Layout helpers
+------------------------- */
 
 .container {
   width: min(var(--container), calc(100% - (var(--gutter) * 2)));
@@ -68,14 +71,8 @@ a:hover {
   padding: 32px 0;
 }
 
-/* Global styles */
-
-.quantock-title {
-  color: var(--accent);
-}
-
 /* -------------------------
-   Typography (mobile-first)
+   Typography
 ------------------------- */
 
 h1,
@@ -84,63 +81,15 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.15;
-  margin: 0 0 16px;
+  line-height: 1.1;
+  margin: 0;
 }
 
 p {
   margin: 0 0 16px;
 }
 
-.page-title {
-  margin: 0 0 24px;
-}
-
-/* Improve Gutenberg default max widths */
-.entry-content {
-  max-width: 100%;
-}
-
-/* Consistent vertical rhythm for blocks */
-.entry-content > * + * {
-  margin-top: 24px;
-}
-
-/* -------------------------
-   Gutenberg tidy-ups
-------------------------- */
-
-/* Prevent surprise floats */
-.entry-content .alignleft,
-.entry-content .alignright,
-.entry-content .wp-block-image.alignleft,
-.entry-content .wp-block-image.alignright {
-  float: none;
-  margin: 0 0 24px 0;
-}
-
-.entry-content .aligncenter {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Full/wide alignment support */
-.wp-block-image.alignwide,
-.wp-block-group.alignwide,
-.wp-block-columns.alignwide {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.wp-block-image.alignfull,
-.wp-block-group.alignfull,
-.wp-block-columns.alignfull {
-  width: 100%;
-  max-width: none;
-}
-
-/* Hide homepage title (covers a few WP variations) */
+/* Hide homepage title */
 .home .entry-title,
 .home .page-title,
 .home .wp-block-post-title {
@@ -148,112 +97,54 @@ p {
 }
 
 /* -------------------------
-   HERO (mobile-first)
-   - Add class "hero" to a Group block
-   - Add class "hero-line-2" to the 2nd heading block (SHIFT PERCEPTION.)
+   HERO
 ------------------------- */
 
-/* Full width background */
 .wp-block-group.hero {
   background: var(--hero-bg);
   min-height: 85vh;
   display: grid;
   align-content: center;
-  padding: 48px 0 80px;
-  position: relative;
-
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  padding: 64px 0 96px;
   width: 100%;
-  max-width: none;
 }
 
-/* Gutenberg inner wrapper acts as our container */
+/* Inner container */
 .wp-block-group.hero > .wp-block-group__inner-container {
   width: min(var(--container), calc(100% - (var(--gutter) * 2)));
   margin-inline: auto;
 }
 
-/* Remove default heading spacing inside hero */
-.wp-block-group.hero .wp-block-heading {
-  margin: 0;
-  max-width: none;
-}
-
-/* Small gap between stacked headings */
-.wp-block-group.hero .wp-block-heading + .wp-block-heading {
-  margin-top: 8px;
-}
-
-/* Base hero heading styling */
-.wp-block-group.hero h1,
-.wp-block-group.hero h2 {
-  margin: 0;
+/* Main hero heading */
+.wp-block-group.hero .hero-title {
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 0.95;
-  font-weight: 800;
   color: var(--ink);
-  font-size: 56px; /* mobile base */
+  font-size: clamp(42px, 10vw, 64px);
 }
 
-/* Accent spans if you use them later */
-.wp-block-group.hero .accent {
+/* Each line is controlled */
+.wp-block-group.hero .hero-line {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+/* Word wrapper */
+.wp-block-group.hero .hero-word {
+  display: inline-block;
+}
+
+/* Accent colour */
+.quantock-title {
   color: var(--accent);
 }
 
-/*
-  Line 2: keep on ONE line.
-  IMPORTANT: In WP, the "Additional CSS class" is applied to the block element itself.
-  So we target h2.hero-line-2 (and also .wp-block-heading.hero-line-2 for safety).
-*/
-.wp-block-group.hero h2.hero-line-2,
-.wp-block-group.hero .wp-block-heading.hero-line-2 {
-  white-space: nowrap !important;
-  overflow-wrap: normal !important;
-  word-break: normal !important;
-  hyphens: none !important;
-
-  /* Scale down more aggressively on mobile */
-  font-size: clamp(28px, 7.5vw, 56px);
-  letter-spacing: -0.02em;
-  display: inline-block;
-  min-width: 0; /* Important for inline-block elements in grid/flex contexts */
-}
-
-/* Extra small mobile fix (350px-500px) */
-@media (max-width: 500px) {
-  .wp-block-group.hero h2.hero-line-2,
-  .wp-block-group.hero .wp-block-heading.hero-line-2 {
-    font-size: 6.5vw; /* More fluid scaling on very small screens */
-    letter-spacing: -0.015em; /* Slightly reduce letter spacing */
-  }
-  
-  /* Ensure container doesn't limit the heading */
-  .wp-block-group.hero > .wp-block-group__inner-container {
-    overflow-x: visible !important;
-  }
-}
-
-/* Very small screens fix (under 350px) */
-@media (max-width: 350px) {
-  .wp-block-group.hero h2.hero-line-2,
-  .wp-block-group.hero .wp-block-heading.hero-line-2 {
-    font-size: 5.5vw; /* Even smaller for very narrow screens */
-    letter-spacing: -0.01em;
-  }
-}
-
-/* Optional: arrow element if you add one later */
-.wp-block-group.hero .hero-arrow {
-  display: grid;
-  place-items: center;
-  margin-top: 48px;
-  opacity: 0.5;
-}
-
 /* -------------------------
-   Responsive upgrades
+   Responsive
 ------------------------- */
 
 @media (min-width: 768px) {
@@ -261,31 +152,18 @@ p {
     --gutter: 32px;
   }
 
-  .site-main {
-    padding: 60px 0;
-  }
-
   .wp-block-group.hero {
     min-height: 90vh;
     padding: 120px 0;
   }
 
-  .wp-block-group.hero h1,
-  .wp-block-group.hero h2 {
-    font-size: 88px;
-  }
-
-  /* On tablet+ we don't need the special shrinking rule */
-  .wp-block-group.hero h2.hero-line-2,
-  .wp-block-group.hero .wp-block-heading.hero-line-2 {
-    font-size: inherit;
-    white-space: nowrap; /* Keep nowrap but inherit font size */
+  .wp-block-group.hero .hero-title {
+    font-size: clamp(72px, 8vw, 96px);
   }
 }
 
 @media (min-width: 1024px) {
-  .wp-block-group.hero h1,
-  .wp-block-group.hero h2 {
+  .wp-block-group.hero .hero-title {
     font-size: 104px;
   }
 }
