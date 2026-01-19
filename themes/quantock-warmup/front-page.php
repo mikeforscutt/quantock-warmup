@@ -5,7 +5,6 @@
     <?php while (have_posts()) : the_post(); ?>
 
       <article <?php post_class('page'); ?>>
-        <div class="container">
 
           <?php if (get_the_title()) : ?>
             <h1 class="page-title"><?php the_title(); ?></h1>
@@ -15,7 +14,6 @@
             <?php the_content(); ?>
           </div>
 
-        </div>
       </article>
 
     <?php endwhile; ?>
