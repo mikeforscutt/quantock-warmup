@@ -1,22 +1,17 @@
 <?php get_header(); ?>
 
 <main class="site-main">
-  <?php if (have_posts()) : ?>
-    <?php while (have_posts()) : the_post(); ?>
+  <?php if ( have_posts() ) : ?>
+    <?php while ( have_posts() ) : the_post(); ?>
 
-      <article <?php post_class('page'); ?>>
+     <article <?php post_class('page'); ?>>
         <div class="container">
-
-          <?php if (get_the_title()) : ?>
             <h1 class="page-title"><?php the_title(); ?></h1>
-          <?php endif; ?>
-
-          <div class="entry-content">
+            <div class="entry-content">
             <?php the_content(); ?>
-          </div>
-
+            </div>
         </div>
-      </article>
+    </article>
 
     <?php endwhile; ?>
   <?php endif; ?>
