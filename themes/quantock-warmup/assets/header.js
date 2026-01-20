@@ -1,32 +1,31 @@
-(function () {
-  const btn = document.querySelector('.burger');
-  const menu = document.querySelector('#mobile-menu');
-  const backdrop = document.querySelector('.mobile-menu-backdrop');
+(() => {
+  const btn = document.querySelector(".burger");
+  const nav = document.getElementById("mobile-menu");
+  const backdrop = document.querySelector(".mobile-menu-backdrop");
+  if (!btn || !nav || !backdrop) return;
 
-  if (!btn || !menu || !backdrop) return;
-
-  function openMenu() {
-    document.documentElement.classList.add('menu-open');
-    btn.setAttribute('aria-expanded', 'true');
-    menu.setAttribute('aria-hidden', 'false');
+  const openMenu = () => {
+    document.body.classList.add("menu-open");
+    btn.setAttribute("aria-expanded", "true");
+    nav.setAttribute("aria-hidden", "false");
     backdrop.hidden = false;
-  }
+  };
 
-  function closeMenu() {
-    document.documentElement.classList.remove('menu-open');
-    btn.setAttribute('aria-expanded', 'false');
-    menu.setAttribute('aria-hidden', 'true');
+  const closeMenu = () => {
+    document.body.classList.remove("menu-open");
+    btn.setAttribute("aria-expanded", "false");
+    nav.setAttribute("aria-hidden", "true");
     backdrop.hidden = true;
-  }
+  };
 
-  btn.addEventListener('click', () => {
-    const isOpen = document.documentElement.classList.contains('menu-open');
+  btn.addEventListener("click", () => {
+    const isOpen = document.body.classList.contains("menu-open");
     isOpen ? closeMenu() : openMenu();
   });
 
-  backdrop.addEventListener('click', closeMenu);
+  backdrop.addEventListener("click", closeMenu);
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
   });
 })();

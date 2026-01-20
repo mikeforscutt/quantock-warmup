@@ -11,21 +11,33 @@
 
 <header class="site-header">
   <div class="site-header__inner">
-    <?php if (has_custom_logo()) : ?>
-      <div class="site-logo">
-        <?php echo get_custom_logo(); ?>
-      </div>
-    <?php else : ?>
-      <a class="site-logo site-logo--text" href="<?php echo esc_url(home_url('/')); ?>">
-        <?php bloginfo('name'); ?>
-      </a>
-    <?php endif; ?>
+  <?php if (has_custom_logo()) : ?>
+    <div class="site-logo">
+      <?php echo get_custom_logo(); ?>
+    </div>
+  <?php else : ?>
+    <a class="site-logo site-logo--text" href="<?php echo esc_url(home_url('/')); ?>">
+      <?php bloginfo('name'); ?>
+    </a>
+  <?php endif; ?>
 
-    <button class="burger" type="button" aria-controls="mobile-menu" aria-expanded="false">
-      <span class="sr-only">Open menu</span>
-      <span class="burger__lines" aria-hidden="true"></span>
-    </button>
-  </div>
+  <nav class="site-nav" aria-label="Primary">
+    <?php
+    wp_nav_menu([
+      'theme_location' => 'primary',
+      'container'      => false,
+      'menu_class'     => 'site-nav__list',
+      'fallback_cb'    => false,
+    ]);
+    ?>
+  </nav>
+
+  <button class="burger" type="button" aria-controls="mobile-menu" aria-expanded="false">
+    <span class="sr-only">Open menu</span>
+    <span class="burger__lines" aria-hidden="true"></span>
+  </button>
+</div>
+
 
   <nav id="mobile-menu" class="mobile-menu" aria-hidden="true">
     <div class="mobile-menu__inner">
