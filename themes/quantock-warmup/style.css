@@ -370,6 +370,101 @@ p {
   transform: translateX(0);
 }
 
+/* -------------------------
+   Challenges section
+------------------------- */
+
+.section {
+  padding: 120px 0;
+}
+
+.section--challenges {
+  background: #fff;
+  text-align: center;
+}
+
+.section__title {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+  color: var(--ink);
+}
+
+.section__lead {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.section__body {
+  max-width: 760px;
+  margin: 0 auto 24px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+
+/* -------------------------
+   CTA Button (exact Figma match)
+------------------------- */
+
+.wp-block-button.cta-button {
+  margin-top: 48px;
+}
+
+.wp-block-button.cta-button .wp-block-button__link {
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+
+  width: min(520px, 100%);
+  min-height: 72px;
+  padding: 0 28px;
+
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.wp-block-button.cta-button .btn__arrow {
+  font-size: 26px;
+  line-height: 1;
+  margin-left: 24px;
+  flex-shrink: 0;
+}
+
+/* Hover / focus */
+.wp-block-button.cta-button .wp-block-button__link:hover,
+.wp-block-button.cta-button .wp-block-button__link:focus-visible {
+  filter: brightness(0.95);
+  outline: none;
+}
+
+/* Mobile refinement */
+@media (max-width: 480px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .wp-block-button.cta-button .wp-block-button__link {
+    min-height: 64px;
+    padding: 0 22px;
+    font-size: 14px;
+  }
+
+  .wp-block-button.cta-button .btn__arrow {
+    font-size: 22px;
+  }
+}
+
+
 
 
 /* -------------------------
