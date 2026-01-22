@@ -539,6 +539,126 @@ p {
   margin: 0;
 }
 
+/* -------------------------
+   Case Studies (Proof) section
+------------------------- */
+
+.section--case-studies {
+  background: #bfdcab; /* tweak if needed */
+  padding: 90px 0 110px;
+}
+
+.case-studies__head {
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+.case-studies__title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--ink);
+  font-size: clamp(54px, 7vw, 92px);
+  margin: 0 0 10px;
+}
+
+.case-studies__lead {
+  margin: 0 0 34px;
+  max-width: 72ch;
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.section--case-studies .case-studies__grid.wp-block-post-template {
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+  list-style: none;
+  padding: 0;
+  margin-block: 0 44px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 34px;
+}
+
+@media (min-width: 700px) {
+  .section--case-studies .case-studies__grid.wp-block-post-template {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .section--case-studies .case-studies__grid.wp-block-post-template {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+}
+
+.case-card {
+  margin: 0;
+}
+
+.case-card__image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.case-card__title {
+  margin: 18px 0 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--ink);
+  font-size: clamp(22px, 2.4vw, 34px);
+}
+
+.case-card__title a {
+  text-decoration: none;
+}
+
+.case-card__title a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+.case-card__excerpt {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 600;
+  color: var(--ink);
+  max-width: 52ch;
+}
+
+.case-card__excerpt p {
+  margin: 0;
+}
+
+/* dark CTA button */
+.btn--dark .wp-element-button {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 4px;
+  padding: 14px 22px;
+  text-decoration: none;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn--dark .wp-element-button:hover {
+  filter: brightness(0.95);
+}
 
 
 /* -------------------------
